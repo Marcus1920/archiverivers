@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.Login" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatible with Xamarin Live Player -->
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+
+        <StackLayout Margin="20"  VerticalOptions="StartAndExpand">
+
+            <ActivityIndicator IsRunning="True" IsVisible="False" x:Name="indixator" />
+            <Label IsVisible="False" x:Name="laindixator" Text="Contacting server. Please wait..." HorizontalOptions="Center" />
+
+            <Grid>
+                <Label FontSize="Medium" Text="Merci ...   Veuillez remplir tous les champs de texte requis"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            </Grid>
+
+
+            <Label FontSize="Medium" HeightRequest="50"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Grid>
+                <Entry  
+                    Text="{Binding Cellphone}"
+                   PlaceholderColor="#212121"
+                    x:Name="Email" Keyboard="Email"
+                    Placeholder="eg. mbayo@tamar.org" 
+                    />
+            </Grid>
+            <Label FontSize="Medium" HeightRequest="15"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+
+                <Entry  TextColor="#212121"
+                    x:Name="Password" IsPassword="True"
+                   PlaceholderColor="#212121"
+                    Text="{Binding Password}"
+                    Placeholder="Password.... " 
+                    Keyboard="Text"/>
+
+            </Grid>
+            
+
+
+            <Label FontSize="Medium" HeightRequest="10"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+
+
+            <Button  x:Name="register"
+                     Clicked="Register_ClickedAsync"
+                     TextColor="White"
+                     CornerRadius="20"
+                     HeightRequest="50"
+                     VerticalOptions="Center"
+                     BackgroundColor="#4CA048"
+                     Text="Envoyer"
+                 />
+            
+
+        </StackLayout>
+
+    </ScrollView>
+</ContentPage>

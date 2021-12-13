@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="sos_solulutio.Views.UserProfile">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <RelativeLayout BackgroundColor="LightGray"
+                >
+                    <Image 
+                        x:Name="BannerImage"
+                        Aspect="AspectFill" 
+                       
+                        RelativeLayout.WidthConstraint="{ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Width,
+                    Factor=1}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Height,
+                    Factor=0.5}"/>
+                    <ic:CircleImage 
+                        HorizontalOptions="Center"
+                        WidthRequest="100"
+                        x:Name="UserProfiles"
+                        HeightRequest="100"
+                        Aspect="AspectFill"
+        
+                       />
+
+                    <StackLayout x:Name="DetailsLayout"
+                                 BackgroundColor="White"
+                                 Margin="10, 0, 10, 10"
+                                 RelativeLayout.HeightConstraint="{ConstraintExpression
+                                Type=RelativeToParent,
+                                Property=Height,
+                                Factor=0.8,
+                                Constant=15}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=1}"
+                                 RelativeLayout.YConstraint="{ConstraintExpression
+                                Type=RelativeToView,
+                                ElementName=BannerImage,
+                                Property=Height,
+                                Factor=0.5,
+                                Constant=-20}">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            BackgroundColor="LightSlateGray">
+
+                            <Label 
+                                x:Name="nameProfile"
+                                Margin="25, 20, 0, 0"
+                                Text="Marcus  Mbayo Shabaz"
+                                TextColor="White"
+                                FontSize="25"/>
+                        </StackLayout>
+                        <ScrollView>
+                            <Grid Margin="25, 5" RowSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Nom" />
+                                <Editor Grid.Row="0" Grid.Column="1" TextColor="CadetBlue"  x:Name="name"    IsEnabled="False"/>
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="Post Nom" />
+                                <Editor Grid.Row="1" Grid.Column="1" FontAttributes="Bold"  x:Name="surname"      IsEnabled="False"/>
+
+                                <Label Grid.Row="2" Grid.Column="0" Text="Telephone" />
+                                <Editor Grid.Row="2" Grid.Column="1" FontAttributes="Bold"   x:Name="cellPhonumber"       IsEnabled="False"/>
+
+                                <Label Grid.Row="3" Grid.Column="0" Text="Email" />
+                                <Editor Grid.Row="3" Grid.Column="1"  TextColor="Black"  x:Name="email"     IsEnabled="False"/>
+
+                              
+                                <StackLayout Grid.Row="7"
+                                             
+                        Margin="10, 0, 0, 0"
+                        BackgroundColor="Transparent"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression
+                                Type=RelativeToView,
+                                ElementName=DetailsLayout,
+                                Property=Width,
+                                Factor=1,
+                                Constant=20}"
+                        RelativeLayout.YConstraint="{ConstraintExpression
+                        Type=RelativeToView,
+                        ElementName=DetailsLayout,
+                        Property=Height,
+                        Factor=1,
+                        Constant=180}">
+
+
+
+
+                                   
+                    
+                                </StackLayout>
+
+
+                            </Grid>
+                            
+                            
+                        </ScrollView>
+                    </StackLayout>
+                    
+                 
+                </RelativeLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

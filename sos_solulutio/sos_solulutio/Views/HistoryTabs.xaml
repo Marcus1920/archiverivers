@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.HistoryTabs" 
+            xmlns:pages="clr-namespace:sos_solulutio.Views" >
+
+
+   
+
+    <pages:Historique Icon="icons8_opened_folder_48.png"/>
+    <pages:Ferme   Icon="icons8_close_tab_48.png"/>
+    <pages:Accepter    Icon="icons8_fingerprint_accepted_48.png"/>
+    <pages:Ignore    Icon="icons8_data_pending_48.png"/>
+
+</TabbedPage>

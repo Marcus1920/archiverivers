@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.ReportDetails" Title="Report Details" BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <RelativeLayout BackgroundColor="LightGray"
+                >
+                    <Image 
+                        x:Name="BannerImage"
+                        Aspect="AspectFill" 
+                        Source="logood.png"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Width,
+                    Factor=1}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Height,
+                    Factor=0.5}"/>
+
+                    <StackLayout x:Name="DetailsLayout"
+                                 BackgroundColor="White"
+                                 Margin="10, 0, 10, 10"
+                                 RelativeLayout.HeightConstraint="{ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Height,
+                    Factor=0.5,
+                    Constant=15}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression
+                    Type=RelativeToParent,
+                    Property=Width,
+                    Factor=1}"
+                                 RelativeLayout.YConstraint="{ConstraintExpression
+                    Type=RelativeToView,
+                    ElementName=BannerImage,
+                    Property=Height,
+                    Factor=1,
+                    Constant=-15}">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            BackgroundColor="#F5CDD2">
+
+                            <Label 
+                                Margin="25, 20, 0, 0"
+                                Text="Plus de  Details"
+                                TextColor="White"
+                                FontSize="30"/>
+                        </StackLayout>
+
+                        <ScrollView>
+                            <Grid Margin="25, 5" RowSpacing="2.5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0" Text="Nom " />
+                                <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Name}"/>
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="" />
+                                <Label Grid.Row="1" Grid.Column="1"  TextColor="Goldenrod" Text=""/>
+                                <Label Grid.Row="2" Grid.Column="0" Text="Post-Nom" />
+                                <Label Margin="0, 0, 0, 5" Grid.Row="2" Grid.Column="1" TextColor="Black" Text="{Binding Surname}"/>
+
+                                <Label Grid.Row="3" Grid.Column="0" Text="Numero de Tellephon" />
+                                <Label x:Name="Callme" Margin="0, 0, 0, 5" Grid.Row="3" Grid.Column="1" TextColor="Black" Text="{Binding CellPhonumber}"/>
+
+                                <Label Grid.Row="4" Grid.Column="0" Text="Province " />
+                                <Label Grid.Row="4" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding Province}"/>
+
+                                <Label Grid.Row="5" Grid.Column="0" Text="Commmune " />
+                                <Label Grid.Row="5" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding Commune}"/>
+
+                                <Label Grid.Row="6" Grid.Column="0" Text="Address " />
+                                <Label Grid.Row="6" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding Address}"/>
+
+                                <Label Grid.Row="7" Grid.Column="0" Text="Category " />
+                                <Label Grid.Row="7" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding category}"/>
+                                
+                                <Label Grid.Row="8" Grid.Column="0" Text="Description " />
+                                <Label Grid.Row="8" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding comments}"/>
+
+                                <Label Grid.Row="9" Grid.Column="0" Text="Status " />
+                                <Label Grid.Row="9" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding status}"/>
+
+
+                            </Grid>
+                        </ScrollView>
+                    </StackLayout>
+                    <Button
+                        Text="Cart"
+                        TextColor="Black"
+                        BackgroundColor="White"
+                        Clicked="mapView_Clicked"
+                        Image="Location.png"
+                        x:Name="mapView"
+                       
+                        RelativeLayout.XConstraint="{ConstraintExpression
+                    Type=RelativeToView,
+                    ElementName=DetailsLayout,
+                    Property=Width,
+                    Factor=1,
+                    Constant=-70}"
+                        RelativeLayout.YConstraint="{ConstraintExpression
+                    Type=RelativeToView,
+                    ElementName=DetailsLayout,
+                    Property=Height,
+                    Factor=1,
+                    Constant=50}" />
+                </RelativeLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.incidents" Title="Signaler incidents">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatible with Xamarin Live Player          <ToolbarItem Text="+" Clicked="OnItemRecord"  x:Name="RecordButton" Icon="ic_settings_voice_white_36dp.png"/>
+ -->
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="Onpickig" Icon="ic_note_add_white_36dp.png"/>
+        <ToolbarItem Text="+" Clicked="OnItemAdded"  Icon="ic_camera_enhance_white_36dp.png"/>
+    </ContentPage.ToolbarItems>
+	
+    <ScrollView>
+
+        <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+
+            <ActivityIndicator IsRunning="True" IsVisible="False" x:Name="loaders" />
+            <Label IsVisible="False" x:Name="labels" Text="Contacting server. Please wait..." HorizontalOptions="Center" />
+
+            <Grid x:Name="Reqgrid">
+
+                <Picker Title="Categories des infraction"   TextColor="#212121"  SelectedItem="{Binding Infraction}" x:Name="infractions">
+                    <Picker.Items>
+                        <x:String>Fraudes</x:String>
+                        <x:String>Usurpation</x:String>
+                        <x:String>Viols</x:String>
+                        <x:String>Mort d'Homme</x:String>
+                        <x:String>Vols</x:String>
+                        <x:String>Extorsion</x:String>
+                        <x:String>Destrucction</x:String>
+                        <x:String>Contrefacon</x:String>
+                        <x:String>Rebellion</x:String>
+                        <x:String>Outrages</x:String>
+                        <x:String>Menaces</x:String>
+                        <x:String>Evasion</x:String>
+                        <x:String>Avortement</x:String>
+                    </Picker.Items>
+                </Picker>
+
+            </Grid>
+
+
+            <Grid>
+                <Picker Title="Province"  SelectedItem="{Binding Province}" x:Name="Province">
+                    <Picker.Items>
+                        <x:String>Lualaba</x:String>
+                        <x:String>Haut-Katanga</x:String>
+
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+
+
+            <Grid>
+                <Picker Title="Commune"  SelectedItem="{Binding Commune}" x:Name="communes">
+                    <Picker.Items>
+                        <x:String>Manika</x:String>
+                        <x:String>Dilala</x:String>
+                        <x:String>Fungurume</x:String>
+
+                    </Picker.Items>
+                </Picker>
+
+            </Grid>
+            <Grid>
+                <Entry  
+                    Text="{Binding Adresse}"
+                    PlaceholderColor="#212121"
+                    x:Name="Adresse"
+                    Placeholder="Adresse " 
+                    Keyboard="Email" />
+            </Grid>
+
+            <Grid>
+                <Editor  HeightRequest="130"
+                    Text="{Binding Description}"
+                    PlaceholderColor="#212121"
+                    x:Name="descrition"
+                    Placeholder="Description... " 
+                    Keyboard="Text" />
+            </Grid>
+            <Image Source="image_not_found.jpg" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" x:Name="Image" HeightRequest="200" WidthRequest="300" Aspect="AspectFill" />
+            <Button  x:Name="envoyer"
+                     Clicked="Envoyer_ClickedAsync"
+                     Text="Envoyer"
+                     TextColor="White"
+                      CornerRadius="20"
+                     HeightRequest="50"
+                     VerticalOptions="Center"
+                     BackgroundColor="#4CA048"
+                    
+                 />
+
+
+           
+
+        </StackLayout>
+
+    </ScrollView>
+</ContentPage>

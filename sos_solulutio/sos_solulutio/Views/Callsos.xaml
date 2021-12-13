@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.Callsos">
+    <ContentPage.Content>
+
+        <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+
+            <ActivityIndicator
+           
+            IsRunning="False"/>
+
+            <Grid>
+                <Label FontSize="Medium" Text="Merci ...   Veuiller clike sur le button pour proccede avec l'Apell"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            </Grid>
+
+
+
+            <Button  x:Name="callsos"
+                     ImageSource="ic_call_black_24dp.png"
+                     Clicked="callsos_Clicked"
+                     TextColor="White"
+                     CornerRadius="20"
+                     HeightRequest="50"
+                     VerticalOptions="Center"
+                     BackgroundColor="#4CA048"
+                     Text="Apelle "
+                 />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
