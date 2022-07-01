@@ -15,6 +15,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+" Clicked="Onpickig" Icon="ic_note_add_white_36dp.png"/>
         <ToolbarItem Text="+" Clicked="OnItemAdded"  Icon="ic_camera_enhance_white_36dp.png"/>
+        <ToolbarItem Text="Recording"  Clicked="OnItemRecord"  x:Name="RecordButton" Icon="ic_settings_voice_white_36dp.png"/>
     </ContentPage.ToolbarItems>
 	
     <ScrollView>
@@ -75,7 +76,7 @@
                     PlaceholderColor="#212121"
                     x:Name="Adresse"
                     Placeholder="Adresse " 
-                    Keyboard="Email" />
+                    Keyboard="Text" />
             </Grid>
 
             <Grid>
@@ -86,7 +87,22 @@
                     Placeholder="Description... " 
                     Keyboard="Text" />
             </Grid>
-            <Image Source="image_not_found.jpg" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" x:Name="Image" HeightRequest="200" WidthRequest="300" Aspect="AspectFill" />
+            <Image Source="image_not_found.jpg" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" x:Name="Image" HeightRequest="200" WidthRequest="400" Aspect="AspectFill" />
+
+            <Button Text="Record New Audio"
+                   TextColor="White"
+                      CornerRadius="20"
+                     HeightRequest="50"
+                    x:Name="playeraudio"
+                     VerticalOptions="Center"  
+                      BackgroundColor="Tomato"
+                      
+                    Clicked="playeraudio_Clicked_1"
+                    />
+
+
+
+
             <Button  x:Name="envoyer"
                      Clicked="Envoyer_ClickedAsync"
                      Text="Envoyer"

@@ -43,12 +43,12 @@ namespace sos_solulutio.Views
                     new  MaipageMasterMenuItem { Id = 0, Title = "Panic SOS", IconSource="ic_add_alert_black_36dp.png", TargetType = typeof(panicsos) },
                     new  MaipageMasterMenuItem { Id = 1, Title = "Appel SOS", IconSource="ic_call_black_24dp.png", TargetType = typeof(Callsos) },
                     new MaipageMasterMenuItem { Id = 2, Title = "Raporter Incidents" , IconSource="ic_create_new_folder_black_36dp.png", TargetType = typeof(incidents) },
-                   //    new MaipageMasterMenuItem { Id = 3, Title = " Historique" , IconSource="ic_library_books_black_48dp.png", TargetType = typeof(HistoryTabs) },
+                    new MaipageMasterMenuItem { Id = 3, Title = " Historique" , IconSource="ic_library_books_black_48dp.png", TargetType = typeof(HistoryTabs) },
 
  
                    //    new MaipageMasterMenuItem { Id = 4, Title = "My Profile", IconSource="ic_group_black_32dp.png", TargetType = typeof(UserProfile) },
 
-                //    new MaipageMasterMenuItem { Id = 4, Title = "Suport",  IconSource="ic_hearing_black_48dp.png", TargetType = typeof(panicsos) },
+                      new MaipageMasterMenuItem { Id = 4, Title = "Aboute",  IconSource="ic_hearing_black_48dp.png", TargetType = typeof(Apropos) },
                 });
             }
 

@@ -47,11 +47,7 @@ namespace sos_solulutio.Views
              
             {
 
-
-
                 //   UserDialogs.Instance.ShowError("Complete les tous field", 2000);
-
-
                 await DisplayAlert("Erreur désolé", "Veuillez remplir tous les champs de texte requis ", "Ok");
 
             }
@@ -111,7 +107,10 @@ namespace sos_solulutio.Views
                 catch (Exception ex)
                 {
 
-                    await DisplayAlert("Erreur désolé"+ ex, ".", "OK");
+
+                    await DisplayAlert("désolé Vous n'ete pas Connecter a l'Internet. Veuille  vérifier votre connection ... Merci pour votre patience ", ".", "OK");
+                    
+                  
                     UserDialogs.Instance.HideLoading();
                 }
                 finally

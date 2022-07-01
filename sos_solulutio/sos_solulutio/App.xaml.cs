@@ -13,10 +13,12 @@ namespace sos_solulutio
         {
             InitializeComponent();
 
-            //DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>()FormsMap(); //;
+
 
             MainPage = new Maipage();
-            
+
+
         }
 
         protected override void OnStart()

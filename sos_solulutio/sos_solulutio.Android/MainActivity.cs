@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
 using Acr.UserDialogs;
+using Xamarin.Forms.GoogleMaps.Android;
 using ZXing.Net.Mobile.Android;
 
 namespace sos_solulutio.Droid
@@ -24,6 +25,7 @@ namespace sos_solulutio.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             ImageCircleRenderer.Init();
             UserDialogs.Init(this);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();

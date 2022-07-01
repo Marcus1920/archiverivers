@@ -22,12 +22,12 @@ namespace sos_solulutio.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+          
+              var local = Preferences.Get("user_id", "");
 
-            var local = Preferences.Get("user_id", "");
-
-            if (string.IsNullOrEmpty(local))
-            {
-                await Navigation.PushModalAsync(new Login());
+              if (string.IsNullOrEmpty(local))
+              {
+                    await Navigation.PushModalAsync(new Login());
             }
 
             //await GetPosts();

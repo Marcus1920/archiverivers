@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Newtonsoft.Json;
 using Plugin.AudioRecorder;
-using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
-using sos_solulutio.Models;
 using sos_solulutio.ViewModels.logic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 
 namespace sos_solulutio.Views
 {
@@ -29,8 +21,15 @@ namespace sos_solulutio.Views
         private readonly string BaseUrl = "http://stormy-wildwood-40195.herokuapp.com/api/incidents/create-incident";
         Position position = null;
         CancellationTokenSource cts;
-        AudioRecorderService recorder;
-        AudioPlayer player;
+        //  private readonly AudioRecorderService recorder = new AudioRecorderService();
+        private readonly AudioRecorderService recorder = new AudioRecorderService()
+        {
+            StopRecordingOnSilence = false,
+            StopRecordingAfterTimeout = false,
+           // TotalAudioTimeout = TimeSpan.FromSeconds(180) //audio will stop recording after 3 minutes
+        };
+
+        private readonly AudioPlayer player = new AudioPlayer();
         private readonly AppFunctions _appFunctions = new AppFunctions();
         private MediaFile _mediafile;
         public incidents()
@@ -44,14 +43,16 @@ namespace sos_solulutio.Views
                 AudioSilenceTimeout = TimeSpan.FromSeconds(2)
             };
 
-            player = new AudioPlayer();
-          //  player.FinishedPlaying += Player_FinishedPlaying;
+
+
         }
 
         private async void Envoyer_ClickedAsync(object sender, EventArgs e)
         {
            
-              var current = Connectivity.NetworkAccess;
+
+
+            var current = Connectivity.NetworkAccess;
 
             if (current == NetworkAccess.Internet && current != NetworkAccess.ConstrainedInternet && current != NetworkAccess.None && current != NetworkAccess.Unknown)
             {
@@ -66,10 +67,11 @@ namespace sos_solulutio.Views
 
                     if (location != null)
                     {
-                        ///  Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                        // Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
 
-                        ////    await DisplayAlert("Notification", location.Latitude + " permission exception", "OK");
+                        //    await DisplayAlert("Notification", location.Latitude + " permission exception", "OK");
 
+                  
 
                         var user_id = Preferences.Get("user_id", "");
 
@@ -90,7 +92,7 @@ namespace sos_solulutio.Views
 
                             };
 
-                       
+
 
                         foreach (var keyValuePair in values)
                         {
@@ -104,11 +106,11 @@ namespace sos_solulutio.Views
                         var client = new HttpClient();
                         var response = await client.PostAsync(BaseUrl, content);
                         var respond = await response.Content.ReadAsStringAsync();
-                      //  await DisplayAlert("Erro", respond + "Severver Problem", "OK");
+                        //  await DisplayAlert("Erro", respond + "Severver Problem", "OK");
 
                         if (respond == "OK")
                         {
-                         
+
                             loaders.IsVisible = false;
                             labels.IsVisible = false;
                             UserDialogs.Instance.HideLoading();
@@ -117,11 +119,11 @@ namespace sos_solulutio.Views
                             _ = communes.SelectedIndex - 1;
                             _ = Province.SelectedIndex - 1;
                             _ = infractions.SelectedIndex - 1;
-                            
+
 
                             await Navigation.PushAsync(new Thankyou
                             {
-
+                           
                             });
                         }
 
@@ -169,7 +171,7 @@ namespace sos_solulutio.Views
                 {
                     // Unable to get location
 
-                    await DisplayAlert("Notification", ex+" Unable to get location", "OK");
+                    await DisplayAlert("Désolé", "Veuillez remplir tous les champs de texte requis", "OK");
                     loaders.IsVisible = false;
                     labels.IsVisible = false;
                     UserDialogs.Instance.HideLoading();
@@ -180,9 +182,9 @@ namespace sos_solulutio.Views
 
             else
 
-                {
+            {
 
-                 await DisplayAlert("Désolé", "Vous n'ete pas Connecter a l'Internet. Veuillez vérifier l'état de votre réseau... Merci pour votre patience", "OK");
+                await DisplayAlert("Désolé", "Vous n'ete pas Connecter a l'Internet. Veuillez vérifier l'état de votre réseau... Merci pour votre patience", "OK");
                 loaders.IsVisible = false;
                 labels.IsVisible = false;
                 UserDialogs.Instance.HideLoading();
@@ -192,49 +194,29 @@ namespace sos_solulutio.Views
         }
 
 
-          protected override void OnDisappearing()
+        protected override void OnDisappearing()
         {
             if (cts != null && !cts.IsCancellationRequested)
                 cts.Cancel();
             base.OnDisappearing();
         }
-         async void  OnItemAdded(object sender, EventArgs e)
+        async void OnItemAdded(object sender, EventArgs e)
         {
-            
+
 
             await TakePict();
         }
-        
-
-              async void OnItemRecord(object sender, EventArgs e)
-           {
-            /* await Navigation.PushAsync(new RequestForelse
-             {
-                 //  BindingContext = new TodoItem()
-             }); */
-
-            await RecordAudio();
-        }
 
 
-        async Task RecordAudio()
+        async void OnItemRecord(object sender, EventArgs e)
         {
-            try
-            {
-                if (!recorder.IsRecording)
-                {
-                    await recorder.StartRecording();
-                }
-                else
-                {
-                    await recorder.StopRecording();
-                }
-            }
-            catch (Exception ex)
-            {
-                
-	}
+
+           
+
         }
+
+
+
         async void Onpickig(object sender, EventArgs e)
         {
             /* await Navigation.PushAsync(new RequestForelse
@@ -254,7 +236,8 @@ namespace sos_solulutio.Views
                 _mediafile = await _appFunctions.BrowsePicture();
 
                 if (_mediafile == null)
-                    await DisplayAlert(null, "Could not get picture.", "OK");
+
+                    await DisplayAlert("Desole", "Impossible d'avoire une photos dans  votre  gallery.", "OK");
 
                 else
                     Image.Source = _mediafile.Path;
@@ -268,14 +251,14 @@ namespace sos_solulutio.Views
 
         async Task TakePict()
         {
-          
+
 
             try
             {
                 _mediafile = await _appFunctions.TakePicture();
 
                 if (_mediafile == null)
-                    await DisplayAlert(null, "Could not take picture.", "OK");
+                    await DisplayAlert(null, "Desole vous n'avait pas une photos.", "OK");
 
                 else
                     Image.Source = _mediafile.Path;
@@ -286,6 +269,26 @@ namespace sos_solulutio.Views
                 Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
             }
         }
+
+
+        async Task openFiles(FileResult audi)
+        {
+            // canceled
+            if (audi == null)
+            {
+                //PhotoPath = null;
+                return;
+            }
+            // save the file into local storage
+            var newFile = Path.Combine(FileSystem.CacheDirectory, audi.FileName);
+            using (var stream = await audi.OpenReadAsync())
+            using (var newStream = File.OpenWrite(newFile))
+                await stream.CopyToAsync(newStream);
+           /// return newFile
+           /// Image.Source = newFile;
+            //PhotoPath = newFile;
+        }
+
 
         async Task LoadPhotoAsync(FileResult photo)
         {
@@ -306,6 +309,80 @@ namespace sos_solulutio.Views
         }
 
 
+
+       
+
+        private async void playeraudio_Clicked_1(object sender, EventArgs e)
+        {
+            var status = await Permissions.RequestAsync<Permissions.Microphone>();
+
+            if (status != Xamarin.Essentials.PermissionStatus.Granted)
+                return;
+
+            if (recorder.IsRecording)
+            {
+
+                await recorder.StopRecording();
+                //    playeraudio.IsVisible = true;
+                // player.Play(recorder.GetAudioFilePath());
+           //     Preferences.Set("selAudio_key", recorder.GetAudioFilePath());
+           
+                playeraudio.Text = "Record New Audio";
+                playeraudio.TextColor = Color.Black;
+                try
+                {
+                    // Use default vibration length
+                    Vibration.Vibrate();
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    // Feature not supported on device
+                    await DisplayAlert("Alert", "Vibrate is not supported on this device", "Continue");
+                }
+                catch (Exception ex)
+                {
+                    // Other error has occurred.
+                    await DisplayAlert("Alert", "Vibrate is not supported on this device", "Continue");
+                }
+
+                //  audioPlayer.Play(audioRecorderService.GetAudioFilePath());
+                // player.Play(recorder.GetAudioFilePath());
+              ///  var pather = recorder.GetAudioFilePath();
+                await DisplayAlert("Alert", "Recorded audio is at: " + recorder.GetAudioFilePath(), "Continue");
+         //       var newFile = Path.Combine(FileSystem.CacheDirectory, pather);
+             //   using (var stream = await pather.OpenReadAsync())
+             //  using (var newStream = File.OpenWrite(newFile))
+                //    await stream.CopyToAsync(newStream);
+             //   await openFiles(FileResult photos);
+
+            }
+            else
+            {
+                try
+                {
+                    // Use default vibration length
+                    Vibration.Vibrate();
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    // Feature not supported on device
+                    // await DisplayAlert("Alert", "Vibrate is not supported on this device", "Continue");
+                }
+                catch (Exception ex)
+                {
+                    // Other error has occurred.
+                    // await DisplayAlert("Alert", "Vibrate is not supported on this device", "Continue");
+                }
+
+                //   await audioRecorderService.StartRecording();
+                playeraudio.Text = "Recording... Press to Finish";
+                playeraudio.TextColor = Color.Red;
+                  await recorder.StartRecording();
+                //   await DisplayAlert("Alert", "Recorded audio is at: " + recorder.GetAudioFilePath(), "OK");
+
+            }
+
+        }
     }
-    
+
 }
