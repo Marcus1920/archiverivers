@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="sos_solulutio.Views.Ignore">
     <StackLayout>
-        <SearchBar x:Name="SearchStation"  Placeholder="Chercher..." 
+        <SearchBar x:Name="SearchStation"  Placeholder="Chercher..." IsVisible="false"
                 TextChanged="CountriesSearchBar_TextChangedAsync"
                  BackgroundColor="White"/>
 

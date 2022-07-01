@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sos_solulutio.Views.Historique"  BackgroundColor="White">
+             x:Class="sos_solulutio.Views.Historique"  BackgroundColor="White" Title="Status ouvert">
     <StackLayout>
-        <SearchBar x:Name="SearchStation"  Placeholder="Chercher..." 
+        <SearchBar x:Name="SearchStation"  Placeholder="Chercher..." IsVisible="false"
                 TextChanged="CountriesSearchBar_TextChangedAsync"
                  BackgroundColor="White"/>
 
         <Label x:Name="notFound" TextColor="Gray" IsVisible="false" Margin="10" />
+       
         <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"

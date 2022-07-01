@@ -18,7 +18,7 @@ namespace sos_solulutio.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, true);
-            this.Title = "Xamarin Forms Google Maps";
+          //  this.Title = "Xamarin Forms Google Maps";
             LoadMap(19.0605421, 72.8618913);
         }
 

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using sos_solulutio.Models;
 using sos_solulutio.Services;
 using Xamarin.Forms;
@@ -45,6 +46,7 @@ namespace sos_solulutio.Views
         {
             try
             {
+                SearchStation.IsVisible=true;
                 notFound.IsVisible = true;
                 notFound.Text = "Loading...";
 
@@ -58,13 +60,16 @@ namespace sos_solulutio.Views
             }
             catch (Exception)
             {
-                await DisplayAlert("Connection Error!",
+                /*await DisplayAlert("Connection Error!",
                     "Please check your network status, refresh the page (pull down) or try again later.",
-                    "OK");
+                    "OK");*/
             }
             finally
             {
-                notFound.Text = "No posts found.";
+                notFound.Text = "";
+                SearchStation.IsVisible = false;
+                UserDialogs.Instance.Toast("Aucun  résulta trouver vérifier votre connections", TimeSpan.FromSeconds(15));
+
             }
         }
 

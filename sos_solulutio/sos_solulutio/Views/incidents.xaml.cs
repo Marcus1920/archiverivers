@@ -26,7 +26,10 @@ namespace sos_solulutio.Views
         {
             StopRecordingOnSilence = false,
             StopRecordingAfterTimeout = false,
-           // TotalAudioTimeout = TimeSpan.FromSeconds(180) //audio will stop recording after 3 minutes
+            // TotalAudioTimeout = TimeSpan.FromSeconds(180) //audio will stop recording after 3 minutes
+          //  StopRecordingAfterTimeout = true,
+            TotalAudioTimeout = TimeSpan.FromSeconds(15),
+          //  AudioSilenceTimeout = TimeSpan.FromSeconds(2)
         };
 
         private readonly AudioPlayer player = new AudioPlayer();
@@ -36,15 +39,7 @@ namespace sos_solulutio.Views
         {
             InitializeComponent();
 
-            recorder = new AudioRecorderService
-            {
-                StopRecordingAfterTimeout = true,
-                TotalAudioTimeout = TimeSpan.FromSeconds(15),
-                AudioSilenceTimeout = TimeSpan.FromSeconds(2)
-            };
-
-
-
+           
         }
 
         private async void Envoyer_ClickedAsync(object sender, EventArgs e)
@@ -208,10 +203,13 @@ namespace sos_solulutio.Views
         }
 
 
-        async void OnItemRecord(object sender, EventArgs e)
+        async void OnMapsearch(object sender, EventArgs e)
         {
 
-           
+             await Navigation.PushAsync(new FormsMap
+             {
+                 //  BindingContext = new TodoItem()
+             }); 
 
         }
 
@@ -346,14 +344,15 @@ namespace sos_solulutio.Views
                 }
 
                 //  audioPlayer.Play(audioRecorderService.GetAudioFilePath());
-                // player.Play(recorder.GetAudioFilePath());
+             //   
               ///  var pather = recorder.GetAudioFilePath();
                 await DisplayAlert("Alert", "Recorded audio is at: " + recorder.GetAudioFilePath(), "Continue");
-         //       var newFile = Path.Combine(FileSystem.CacheDirectory, pather);
-             //   using (var stream = await pather.OpenReadAsync())
-             //  using (var newStream = File.OpenWrite(newFile))
+                player.Play(recorder.GetAudioFilePath());
+                //   var newFile = Path.Combine(FileSystem.CacheDirectory, recorder.GetAudioFilePath());
+                /// using (var stream = await OpenReadAsync())
+                //     using (var newStream = File.OpenWrite(newFile))
                 //    await stream.CopyToAsync(newStream);
-             //   await openFiles(FileResult photos);
+                //   await openFiles(FileResult photos);
 
             }
             else
