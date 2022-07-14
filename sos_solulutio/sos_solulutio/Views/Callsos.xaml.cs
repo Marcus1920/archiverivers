@@ -21,7 +21,7 @@ namespace sos_solulutio.Views
         {
             try
             {
-                PhoneDialer.Open("+243848478160");
+                PhoneDialer.Open("+243992203123");
             }
             catch (ArgumentNullException anEx)
             {

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.Checkout" Title="Checkout">
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+
+            
+            <Entry  
+                    Text="Kamoa Mining"
+                    PlaceholderColor="#212121"
+                    x:Name="Adresse"
+                    Placeholder="Adresse " 
+                    Keyboard="Text" />
+
+            <Picker Title="Tache Journaliere"   TextColor="#212121"  SelectedItem="{Binding Infraction}" x:Name="infractions">
+                <Picker.Items>
+                    <x:String>Rounding</x:String>
+                    <x:String>Patrouile</x:String>
+                   
+                </Picker.Items>
+            </Picker>
+
+        
+            <Editor  HeightRequest="140" 
+                    Text="{Binding Description}"
+                    PlaceholderColor="#212121"
+                    x:Name="descrition"
+                    Placeholder="Description... " 
+                    Keyboard="Text" />
+
+
+            <Label Text="" />
+
+            <Button  x:Name="envoyerout"
+                     Clicked="envoyerout_Clicked"
+                     Text="Proceder"
+                     ImageSource="ic_done_all_white_36dp.png"
+                     TextColor="White"
+                      CornerRadius="20"
+                     HeightRequest="50"
+                     VerticalOptions="Center"
+                     BackgroundColor="#4CA048"
+                    
+                 />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

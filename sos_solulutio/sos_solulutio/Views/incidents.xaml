@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sos_solulutio.Views.incidents" Title="Signaler incidents">
+             x:Class="sos_solulutio.Views.incidents" Title="Incidents">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--Page Level Resources: Compatible with Xamarin Live Player          <ToolbarItem Text="+" Clicked="OnItemRecord"  x:Name="RecordButton" Icon="ic_settings_voice_white_36dp.png"/>
+            <!--
+            
+            Page Level Resources: Compatible with Xamarin Live Player          <ToolbarItem Text="+" Clicked="OnItemRecord"  x:Name="RecordButton" Icon="ic_settings_voice_white_36dp.png"/>
  -->
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -13,9 +15,9 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Clicked="Onpickig" Icon="ic_note_add_white_36dp.png"/>
+        <ToolbarItem Text="+" Clicked="Onpickig" Icon="ic_party_mode_white_36dp.png"/>
         <ToolbarItem Text="+" Clicked="OnItemAdded"  Icon="ic_camera_enhance_white_36dp.png"/>
-        <ToolbarItem Text="+"  Clicked="OnMapsearch"  x:Name="MapSearchButton" Icon="ic_room_white_36dp.png"/>
+        <ToolbarItem Text="+"  Clicked="OnMapsearch"  x:Name="MapSearchButton" Icon="ic_map_white_36dp.png"/>
     </ContentPage.ToolbarItems>
 	
     <ScrollView>
@@ -27,11 +29,13 @@
 
             <Grid x:Name="Reqgrid">
 
-                <Picker Title="Categories des infraction"   TextColor="#212121"  SelectedItem="{Binding Infraction}" x:Name="infractions">
+                <Picker Title="Categories des Incidents"   TextColor="#212121"  SelectedItem="{Binding Infraction}" x:Name="infractions">
                     <Picker.Items>
                         <x:String>Fraudes</x:String>
                         <x:String>Usurpation</x:String>
                         <x:String>Viols</x:String>
+                        <x:String>Incendie</x:String>
+                        <x:String>Accouchement</x:String>
                         <x:String>Mort d'Homme</x:String>
                         <x:String>Vols</x:String>
                         <x:String>Extorsion</x:String>
@@ -49,27 +53,54 @@
 
 
             <Grid>
-                <Picker Title="Province"  SelectedItem="{Binding Province}" x:Name="Province">
+                <Picker Title=" Sélectionner la Province "  SelectedIndexChanged="Province_SelectedIndexChanged"   x:Name="Province">
                     <Picker.Items>
                         <x:String>Lualaba</x:String>
                         <x:String>Haut-Katanga</x:String>
-
+                        <x:String>Bas-Uele</x:String>
+                        <x:String>Équateur</x:String>
+                        <x:String>Haut-Lomami</x:String>
+                        <x:String>Haut-Uele</x:String>
+                        <x:String>Ituri</x:String>
+                        <x:String>Kasaï</x:String>
+                        <x:String>Kasaï central</x:String>
+                        <x:String>Kasaï oriental</x:String>
+                        <x:String>Kinshasa</x:String>
+                        <x:String>Kongo-Central</x:String>
+                        <x:String>Kwango</x:String>
+                        <x:String>Kwilu</x:String>
+                        <x:String>Lomami</x:String>
+                        <x:String>Mai-Ndombe</x:String>
+                        <x:String>Maniema</x:String>
+                        <x:String>Mongala</x:String>
+                        <x:String>Nord-Kivu</x:String>
+                        <x:String>Nord-Ubangi</x:String>
+                        <x:String>Sankuru</x:String>
+                        <x:String>Sud-Kivu</x:String>
+                        <x:String>Sud-Ubangi</x:String>
+                        <x:String>Tanganyika</x:String>
+                        <x:String>Tshopo</x:String>
+                        <x:String>Tshuapa</x:String>
                     </Picker.Items>
                 </Picker>
             </Grid>
-
 
             <Grid>
-                <Picker Title="Commune"  SelectedItem="{Binding Commune}" x:Name="communes">
-                    <Picker.Items>
-                        <x:String>Manika</x:String>
-                        <x:String>Dilala</x:String>
-                        <x:String>Fungurume</x:String>
-
-                    </Picker.Items>
+                <Picker Title="Sélectionner Ville de la Province"     x:Name="ville">
+                   
                 </Picker>
 
             </Grid>
+            <!--
+            <Grid>
+                
+                
+                <Picker Title="Commune"   x:Name="communes">
+                   
+                </Picker>
+
+            </Grid>
+            -->
             <Grid>
                 <Entry  
                     Text="{Binding Adresse}"
@@ -87,8 +118,9 @@
                     Placeholder="Description... " 
                     Keyboard="Text" />
             </Grid>
-            <Image Source="image_not_found.jpg" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  x:Name="Image" HeightRequest="200" WidthRequest="400" Aspect="AspectFill" Visual="Material"  />
-             
+            <Image Source="image_not_found.jpg" HorizontalOptions="EndAndExpand"  VerticalOptions="CenterAndExpand"  x:Name="Image" HeightRequest="200" WidthRequest="400" Aspect="AspectFill" Visual="Material"  />
+
+            <!--Page    
             <Button Text="Record New Audio"
                    TextColor="White"
                       CornerRadius="20"
@@ -99,6 +131,7 @@
                       ImageSource="ic_settings_voice_white_36dp.png"
                     Clicked="playeraudio_Clicked_1"
                     />
+            -->
 
 
 
@@ -114,9 +147,6 @@
                      BackgroundColor="#4CA048"
                     
                  />
-
-
-           
 
         </StackLayout>
 

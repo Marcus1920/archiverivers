@@ -11,7 +11,7 @@
             IsRunning="False"/>
 
             <Grid>
-                <Label FontSize="Medium" Text="Merci ...   Veuiller clike sur le button pour proccede avec l'Apell"
+                <Label FontSize="Medium" Text="Merci ...   Veuiller clike sur le button pour proccede avec l'Appel"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             </Grid>
@@ -19,14 +19,14 @@
 
 
             <Button  x:Name="callsos"
-                     ImageSource="ic_call_black_24dp.png"
+                     ImageSource="ic_local_phone_white_36dp.png"
                      Clicked="callsos_Clicked"
                      TextColor="White"
                      CornerRadius="20"
                      HeightRequest="50"
                      VerticalOptions="Center"
                      BackgroundColor="#4CA048"
-                     Text="Apelle "
+                     Text="Appel"
                  />
 
         </StackLayout>

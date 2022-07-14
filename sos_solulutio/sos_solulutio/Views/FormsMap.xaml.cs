@@ -19,7 +19,7 @@ namespace sos_solulutio.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, true);
           //  this.Title = "Xamarin Forms Google Maps";
-            LoadMap(19.0605421, 72.8618913);
+            LoadMap(-4.034110, 21.764613);
         }
 
         public async void LoadMap(double latitude, double longitude)
@@ -39,6 +39,9 @@ namespace sos_solulutio.Views
                     MapType = MapType.Street,
                     HasZoomEnabled = true,
                     HasScrollEnabled = true,
+                    IsTrafficEnabled=true,
+                    
+                    
                     IsEnabled = true
                 };
 
@@ -48,10 +51,11 @@ namespace sos_solulutio.Views
                     Type = PinType.Place,
                     Label = placemark.Locality + "",
                     Address = placemark.CountryName
-
+                    
                 };
-
+                pin.IsDraggable=true;
                 map.Pins.Add(pin);
+
                 Position position = new Position();
 
                 MapSpan mapSpan = new MapSpan(position, latitude, longitude);
@@ -76,7 +80,9 @@ namespace sos_solulutio.Views
             }
             catch (Exception ex)
             {
-                lblInfo.Text = ex.Message.ToString();
+                await DisplayAlert("Notification", "Pour utliser la cart Pour la premiere fois  connecter vous a l'internet Merci...", "OK");
+
+               // lblInfo.Text =    "";          // ex.Message.ToString();
                 ContentMap.IsVisible = false;
                 lblInfo.IsVisible = true;
                 gridContainer.IsVisible = false;

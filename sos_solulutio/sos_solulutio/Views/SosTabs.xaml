@@ -2,11 +2,11 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="sos_solulutio.Views.SosTabs"
-            xmlns:pages="clr-namespace:sos_solulutio.Views" Title="Panic SOS ">
+            xmlns:pages="clr-namespace:sos_solulutio.Views" Title="Alert SOS ">
   <!--Pages can be added as references or inline-->
     <!--Pages can be added as references or inline-->
     <!--Pages can be added as references or inline-->
-    <pages:panicsos />
-    <pages:SmsPanic  />
+    <pages:panicsos Icon="ic_notifications_on_white_36dp.png"  />
+    <pages:SmsPanic Icon="ic_notifications_none_white_36dp.png"  />
 
 </TabbedPage>

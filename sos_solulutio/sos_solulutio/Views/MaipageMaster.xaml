@@ -9,7 +9,7 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
             <ListView.Header>
-                <Grid BackgroundColor="#666666">
+                <Grid BackgroundColor="#666666" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -22,15 +22,19 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
+                    
+            
+            
                     <ic:CircleImage 
                         x:Name="ProfilePic"
-                        Margin="0, 10, 0, 0"
+                        Margin="5, 10, 0, 0"
                         Grid.Column="1"
                         Grid.Row="0"
-                        WidthRequest="150"
-                        HeightRequest="150"
+                        WidthRequest="175"
+                        HeightRequest="175"
                         Aspect="AspectFill"/>
-
+                   
+                   
                     <Label
                         Grid.Column="1"
                         Grid.Row="2"
@@ -63,11 +67,14 @@
 
                             </Grid.RowDefinitions>
                             <Image Grid.Row="0" Grid.Column="0" Source="{Binding IconSource}" />
-                            <Label Grid.Row="0" Grid.Column="1" Margin="2" VerticalTextAlignment="Center"  Font="12" Text="{Binding Title}" VerticalOptions="FillAndExpand" />
+                            <Label Grid.Row="0" Grid.Column="1" Margin="2" VerticalTextAlignment="Center"  Font="15" Text="{Binding Title}" VerticalOptions="FillAndExpand" />
                         </Grid>
+                     
+
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Label x:Name="infoMame" />
     </StackLayout>
 </ContentPage>

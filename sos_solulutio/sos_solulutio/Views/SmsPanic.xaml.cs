@@ -25,6 +25,13 @@ namespace sos_solulutio.Views
         {
             InitializeComponent();
         }
+        protected override void OnDisappearing()
+        {
+            if (cts != null && !cts.IsCancellationRequested)
+                cts.Cancel();
+            base.OnDisappearing();
+        }
+
         private async void Btn2_ClickedAsync(object sender, EventArgs e)
         {
 
@@ -41,7 +48,7 @@ namespace sos_solulutio.Views
                     //   label.IsVisible = true;
                     // main_gride.IsVisible = false;
                     UserDialogs.Instance.ShowLoading("Veuillez patienter, nous traitons votre demande", MaskType.Black);
-                    var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(10));
+                    var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
                     cts = new CancellationTokenSource();
                     var location = await Geolocation.GetLocationAsync(request, cts.Token);
 
@@ -50,6 +57,11 @@ namespace sos_solulutio.Views
                         ///  Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
 
                         ////    await DisplayAlert("Notification", location.Latitude + " permission exception", "OK");
+                       
+
+
+                        Preferences.Set("lattide", location.Latitude.ToString("N6").Replace(",", "."));
+                        Preferences.Set("longitude", location.Longitude.ToString("N6").Replace(",", "."));
 
 
                         var user_id = Preferences.Get("user_id", "");
@@ -69,8 +81,18 @@ namespace sos_solulutio.Views
 
                     else
                     {
-                        await DisplayAlert("Notification", " Cant get Location", "OK");
+                        // await DisplayAlert("Notification", " Cant get Location", "OK");
+                        // UserDialogs.Instance.HideLoading();
+
+                        var name = Preferences.Get("name", "");
+                        var longit = Preferences.Get("longitude", "");
+                        var lattid = Preferences.Get("lattide", "");
+                        var messageText = "SOS ...C'est " + "Marcus" + "je suis en Danger voici ma lacation  " + "http://www.google.com/maps/place/" + lattid + "," + longit;
+                        var recipient = "+243848478160";
+                        var message = new SmsMessage(messageText, new[] { recipient });
+                        await Sms.ComposeAsync(message);
                         UserDialogs.Instance.HideLoading();
+
 
                     }
                 }

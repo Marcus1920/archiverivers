@@ -160,20 +160,17 @@ namespace sos_solulutio.Views
                 else
                 {
                     // unable  to connnet to  the  network
-
-
-
-                    await DisplayAlert("Désolée", "Connexion interrompue Veuillez vérifier l'état de votre réseau, actualiser la page ou réessayer plus tard", "OK");
+                    await DisplayAlert("Désolée", "Veuillez vérifier votre   Connexion mobile", "OK");
                     loader.IsVisible = false;
                     label.IsVisible = false;
                     UserDialogs.Instance.HideLoading();
 
 
-                        }
+                 }
 
 
               
-                      }
+                 }
                     else
                     {
                         await DisplayAlert("Notification", "Merci pour votre patience...", "OK");

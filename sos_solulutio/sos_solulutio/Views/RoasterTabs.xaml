@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sos_solulutio.Views.RoasterTabs"
+    xmlns:pages="clr-namespace:sos_solulutio.Views" >
+
+
+
+
+    <pages:DaysShift Icon="ic_settings_display_white_36dp.png" Title="Day Shift"/>
+    <pages:NigthShift   Icon="ic_settings_remote_white_36dp.png" Title="Nigth Shift"/>
+    <pages:Break   Icon="ic_local_hotel_white_36dp.png" Title="Break "/>
+
+    
+
+
+</TabbedPage>

@@ -10,7 +10,7 @@
                     <Image 
                         x:Name="BannerImage"
                         Aspect="AspectFill" 
-                       
+                        BackgroundColor="WhiteSmoke"
                         RelativeLayout.WidthConstraint="{ConstraintExpression
                     Type=RelativeToParent,
                     Property=Width,
@@ -19,12 +19,13 @@
                     Type=RelativeToParent,
                     Property=Height,
                     Factor=0.5}"/>
-                    <ic:CircleImage 
+                    <Image 
                         HorizontalOptions="Center"
-                        WidthRequest="100"
+                        WidthRequest="200"
                         x:Name="UserProfiles"
-                        HeightRequest="100"
+                        HeightRequest="200"
                         Aspect="AspectFill"
+                        BackgroundColor="WhiteSmoke"
         
                        />
 

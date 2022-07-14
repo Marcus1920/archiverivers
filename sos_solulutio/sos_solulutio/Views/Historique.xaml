@@ -29,12 +29,12 @@
                                     WidthRequest="55"
                                     HeightRequest="55"
                                     
-                                    Source="ic_folder_open_black_48dp.png"/>
+                                    Source="ic_library_books_black_48dp.png"/>
                             <StackLayout Grid.Row="0" Grid.Column="1">
                                 <StackLayout  VerticalOptions="StartAndExpand">
-                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding Name , StringFormat='Nom :{0:F2}' }" />
-                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding Surname ,StringFormat='Post-Nom :{0:F2}'}" />
-                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding category,StringFormat='Infraction :{0:F2}'}" />
+                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding Name, StringFormat='Nom du reporteur :{0:F2}' }" />
+                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding CellPhonumber,StringFormat='Telephone Number :{0:F2}'}" />
+                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding category,StringFormat='Type Incident Reporter :{0:F2}'}" />
                                    
                                 </StackLayout>
                             </StackLayout>

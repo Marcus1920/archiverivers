@@ -19,6 +19,7 @@ namespace sos_solulutio.Models
         public string Email { get; set; }
         public string Province { get; set; }
         public string Commune { get; set; }
+        public string ville { get; set; }
         public string Address { get; set; }
     }
 }

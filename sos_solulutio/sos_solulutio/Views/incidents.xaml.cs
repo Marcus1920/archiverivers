@@ -39,36 +39,40 @@ namespace sos_solulutio.Views
         {
             InitializeComponent();
 
-           
+            
         }
 
         private async void Envoyer_ClickedAsync(object sender, EventArgs e)
         {
-           
 
 
-            var current = Connectivity.NetworkAccess;
+                // Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+
+                //    await DisplayAlert("Notification", location.Latitude + " permission exception", "OK");
+             //   await DisplayAlert("Désolé", "Veuillez remplir tous les champs de texte requis ", "Ok");
+    
+                  
+    
+    var current = Connectivity.NetworkAccess;
 
             if (current == NetworkAccess.Internet && current != NetworkAccess.ConstrainedInternet && current != NetworkAccess.None && current != NetworkAccess.Unknown)
             {
                 try
                 {
-                    loaders.IsVisible = true;
-                    labels.IsVisible = true;
-                    UserDialogs.Instance.ShowLoading("Contacting server. Please wait", MaskType.Black);
+                    //loaders.IsVisible = true;
+                    //labels.IsVisible = true;
+                   
+                       
                     var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(3));
                     cts = new CancellationTokenSource();
                     var location = await Geolocation.GetLocationAsync(request, cts.Token);
 
                     if (location != null)
                     {
-                        // Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
 
-                        //    await DisplayAlert("Notification", location.Latitude + " permission exception", "OK");
+                            UserDialogs.Instance.ShowLoading("Veillez patiente votre  requête et entrain d’être traite   Merci pour votre patience …", MaskType.Black);
 
-                  
-
-                        var user_id = Preferences.Get("user_id", "");
+                            var user_id = Preferences.Get("user_id", "");
 
                         var content = new MultipartFormDataContent();
 
@@ -78,10 +82,11 @@ namespace sos_solulutio.Views
 
                             new KeyValuePair<string, string>("user_id",  user_id),
                             new KeyValuePair<string,  string>("Province", Province.SelectedItem.ToString()),
+                            new KeyValuePair<string,  string>("ville", ville.SelectedItem.ToString()),
                             new KeyValuePair<string, string>("comments",descrition.Text),
                             new KeyValuePair<string, string>("long",  location.Longitude.ToString("N6").Replace(",", ".")),
                             new KeyValuePair<string, string>("lat",   location.Latitude.ToString("N6").Replace(",", ".")),
-                            new KeyValuePair<string, string>("Commune",communes.SelectedItem.ToString()),
+                            new KeyValuePair<string, string>("Commune",ville.SelectedItem.ToString()),
                             new KeyValuePair<string, string>("type",infractions.SelectedItem.ToString()),
                             new KeyValuePair<string, string>("Address", Adresse.Text)
 
@@ -101,7 +106,7 @@ namespace sos_solulutio.Views
                         var client = new HttpClient();
                         var response = await client.PostAsync(BaseUrl, content);
                         var respond = await response.Content.ReadAsStringAsync();
-                        //  await DisplayAlert("Erro", respond + "Severver Problem", "OK");
+                        // await DisplayAlert("Désolée", respond + "Connexion interrompue Veuillez vérifier votre Connexion donne", "OK");
 
                         if (respond == "OK")
                         {
@@ -110,22 +115,24 @@ namespace sos_solulutio.Views
                             labels.IsVisible = false;
                             UserDialogs.Instance.HideLoading();
                             /// await DisplayAlert("Notification", "Votre Requete a etait recu Merci Patiente la police et en route", "OK");
-                            descrition.Text = "";
-                            _ = communes.SelectedIndex - 1;
+                              descrition.Text = "";
+                          //  _ = communes.SelectedIndex - 1;
                             _ = Province.SelectedIndex - 1;
                             _ = infractions.SelectedIndex - 1;
-
+                            _ = ville.SelectedIndex - 1;
+                            Image.Source="image_not_found.jpg";
 
                             await Navigation.PushAsync(new Thankyou
                             {
                            
                             });
                         }
-
-                        else
+                    
+                
+                    else
                         {
 
-                            await DisplayAlert("Désolée", "Connexion interrompue Veuillez vérifier l'état de votre réseau, actualiser la page ou réessayer plus tard", "OK");
+                            await DisplayAlert("Désolée", "Connexion interrompue Veuillez vérifier votre Connexion donne ", "OK");
                             loaders.IsVisible = false;
                             labels.IsVisible = false;
                             UserDialogs.Instance.HideLoading();
@@ -133,9 +140,12 @@ namespace sos_solulutio.Views
                         }
                     }
 
-
-
+                    
                 }
+
+
+
+
                 catch (FeatureNotSupportedException fnsEx)
                 {
                     // Handle not supported on device exception
@@ -179,13 +189,13 @@ namespace sos_solulutio.Views
 
             {
 
-                await DisplayAlert("Désolé", "Vous n'ete pas Connecter a l'Internet. Veuillez vérifier l'état de votre réseau... Merci pour votre patience", "OK");
+                await DisplayAlert("Désolé", "Vous n'ete pas Connecter a l'Internet. Veuillez vérifier votre Connexion donne ... Merci pour votre patience", "OK");
                 loaders.IsVisible = false;
                 labels.IsVisible = false;
                 UserDialogs.Instance.HideLoading();
 
             }
-
+            
         }
 
 
@@ -235,7 +245,7 @@ namespace sos_solulutio.Views
 
                 if (_mediafile == null)
 
-                    await DisplayAlert("Desole", "Impossible d'avoire une photos dans  votre  gallery.", "OK");
+                    await DisplayAlert("Desole", "Veuillez   recommencé  et choisies  une photos dans votre gallérie.", "OK");
 
                 else
                     Image.Source = _mediafile.Path;
@@ -256,7 +266,7 @@ namespace sos_solulutio.Views
                 _mediafile = await _appFunctions.TakePicture();
 
                 if (_mediafile == null)
-                    await DisplayAlert(null, "Desole vous n'avait pas une photos.", "OK");
+                    await DisplayAlert("Desole", "Veuillez recommencé  et capture une photos  Merci pour votre patience...", "OK");
 
                 else
                     Image.Source = _mediafile.Path;
@@ -325,8 +335,8 @@ namespace sos_solulutio.Views
                 // player.Play(recorder.GetAudioFilePath());
            //     Preferences.Set("selAudio_key", recorder.GetAudioFilePath());
            
-                playeraudio.Text = "Record New Audio";
-                playeraudio.TextColor = Color.Black;
+             //   playeraudio.Text = "Record New Audio";
+              //  playeraudio.TextColor = Color.Black;
                 try
                 {
                     // Use default vibration length
@@ -348,7 +358,8 @@ namespace sos_solulutio.Views
               ///  var pather = recorder.GetAudioFilePath();
                 await DisplayAlert("Alert", "Recorded audio is at: " + recorder.GetAudioFilePath(), "Continue");
                 player.Play(recorder.GetAudioFilePath());
-                //   var newFile = Path.Combine(FileSystem.CacheDirectory, recorder.GetAudioFilePath());
+               
+                                //   var newFile = Path.Combine(FileSystem.CacheDirectory, recorder.GetAudioFilePath());
                 /// using (var stream = await OpenReadAsync())
                 //     using (var newStream = File.OpenWrite(newFile))
                 //    await stream.CopyToAsync(newStream);
@@ -374,14 +385,212 @@ namespace sos_solulutio.Views
                 }
 
                 //   await audioRecorderService.StartRecording();
-                playeraudio.Text = "Recording... Press to Finish";
-                playeraudio.TextColor = Color.Red;
+                //playeraudio.Text = "Recording... Press to Finish";
+                //playeraudio.TextColor = Color.Red;
                   await recorder.StartRecording();
+               
                 //   await DisplayAlert("Alert", "Recorded audio is at: " + recorder.GetAudioFilePath(), "OK");
 
             }
 
         }
+
+        private async void Province_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string subject = Province.SelectedItem.ToString();
+            try
+            {
+                // Use default vibration length
+                switch (subject)
+                {
+
+                    case "Lualaba":
+
+                        ville.Items.Clear();
+                        //  communes.Items.Clear();
+                        ville.Items.Add("Kolwezi");
+                        ville.Items.Add("Kasaji");
+                        break;
+
+                    case "Haut-Katanga":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Lubumbashi");
+                        ville.Items.Add("Likasi");
+                        break;
+
+                     case "Bas-Uele":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Buta");
+                        break;
+
+                    case "Kongo central":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Matadi");
+                        ville.Items.Add("Mbanza-Ngungu");
+                        
+                        break;
+
+                    case "Bandundu":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Bandundu");
+                        ville.Items.Add("Bolobo");
+
+                        break;
+
+                    case "Maniema":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kindu");
+                        ville.Items.Add("Kalima");
+
+                        break;
+
+                    case "Nord-Kivu":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Beni");
+                        ville.Items.Add("Butembo");
+                        ville.Items.Add("Goma");
+                        break;
+
+                         case "Tanganyika":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kalemie");
+                        ville.Items.Add("Kabalo");
+                        
+                        break;
+
+                    case "Sud-Kivu":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Bukavu");
+                        ville.Items.Add("Uvira");
+
+                        break;
+
+                    case "Kasaï central":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kananga");
+                        break;
+
+                    case "Kasaï":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Tshikapa");
+                        break;
+
+                    case "Kasaï oriental":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Mbuji-Mayi");
+                        break;
+
+                    case "Nord-Ubangi":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Gbadolite");
+                        break;
+
+                    case "Tshopo":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kisangani");
+                        break;
+
+                    case "Kinshasa":
+
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kinshasa");
+                        break;
+
+                    case "Haut-Uele":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Isiro");
+                        break;
+
+                    case "Haut-Lomami":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kamina");
+                        ville.Items.Add("Kaniama");
+                        
+                        break;
+
+                    case "Équateur":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Mbandaka");
+                        break;
+
+                    case "Mai-Ndombe":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Inongo");
+                        break;
+
+                    case "Mongala":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Lisala");
+                        break;
+
+                    case "Tshuapa":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Boende");
+                        break;
+
+                    case "Kwango":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Kenge");
+                        break;
+
+                    case "Sud-Ubangi":
+                        ville.Items.Clear();
+                        // communes.Items.Clear();
+                        ville.Items.Add("Gemena");
+                        break;
+                         
+                    default:
+                        Console.WriteLine("Subject is C#");
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Feature not supported on device
+                 await DisplayAlert("Alert", "Exeption "+ex, "Continue");
+            }
+
+
+
+
+        }
     }
+
+
 
 }

@@ -4,7 +4,7 @@
              x:Class="sos_solulutio.Views.Ferme" Title="Satus Ferme">
     <StackLayout>
         <SearchBar x:Name="SearchStation"  Placeholder="Chercher..." IsVisible="false"
-                TextChanged="CountriesSearchBar_TextChangedAsync"
+                 TextChanged="CountriesSearchBar_TextChangedAsync"
                  BackgroundColor="White"/>
         
         <Label x:Name="notFound" TextColor="Gray" IsVisible="false" Margin="10" />

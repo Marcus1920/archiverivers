@@ -31,11 +31,13 @@ namespace sos_solulutio.Views
         }
         protected override void OnAppearing()
         {
-
+            
             nameProfile.Text = Preferences.Get("name", "") + "  " + Preferences.Get("surname", "");
-            BannerImage.Source = Preferences.Get("logo", "");
+           //BannerImage.Source = Preferences.Get("logo", "");
+           
 
-            UserProfiles.Source = Preferences.Get("image", "");
+            //UserProfiles.Source = Preferences.Get("image", "");
+//UserProfiles.Source = "logos.png";
             // dateofbirth.Text = Preferences.Get("dateofbirth", "");
             email.Text = Preferences.Get("email", "");
             cellPhonumber.Text = Preferences.Get("cellPhonumber", "");

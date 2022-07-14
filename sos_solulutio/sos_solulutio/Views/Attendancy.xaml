@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="sos_solulutio.Views.Attendancy">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+
+                <zxing:ZXingScannerView x:Name="zxing" HeightRequest="400" VerticalOptions="FillAndExpand"/>
+
+                <Label x:Name="lblResult" Text=" " />
+                <Button Text="Check IN"
+                   TextColor="White"
+                      CornerRadius="20"
+                     HeightRequest="50"
+                    x:Name="checkin"
+                     VerticalOptions="Center"  
+                       BackgroundColor="#765350"
+                      ImageSource="ic_exit_to_app_white_36dp.png"
+                    Clicked="checkin_Clicked"
+                    />
+
+                <Label Text=" " />
+
+
+                <Button  x:Name="checkout"
+                     Clicked="checkout_Clicked"
+                     Text="Check Out"
+                     ImageSource="ic_input_white_36dp.png"
+                     TextColor="White"
+                      CornerRadius="20"
+                     HeightRequest="50"
+                     VerticalOptions="Center"
+                     BackgroundColor="#765350"
+                 />
+                <Label Text=" " />
+               
+            </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

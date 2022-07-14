@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sos_solulutio.Views.ReportDetails" Title="Report Details" BackgroundColor="White">
+             x:Class="sos_solulutio.Views.ReportDetails" Title="Details du Reportage" BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -41,7 +41,7 @@
 
                         <StackLayout
                             Orientation="Horizontal"
-                            BackgroundColor="#F5CDD2">
+                            BackgroundColor="LightSlateGray">
 
                             <Label 
                                 Margin="25, 20, 0, 0"
@@ -74,7 +74,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Label Grid.Row="0" Grid.Column="0" Text="Nom " />
-                                <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Name}"/>
+                                <Label Grid.Row="0" Grid.Column="1" TextColor="Black" Text="{Binding Name}"/>
 
                                 <Label Grid.Row="1" Grid.Column="0" Text="" />
                                 <Label Grid.Row="1" Grid.Column="1"  TextColor="Goldenrod" Text=""/>
@@ -85,27 +85,30 @@
                                 <Label x:Name="Callme" Margin="0, 0, 0, 5" Grid.Row="3" Grid.Column="1" TextColor="Black" Text="{Binding CellPhonumber}"/>
 
                                 <Label Grid.Row="4" Grid.Column="0" Text="Province " />
-                                <Label Grid.Row="4" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding Province}"/>
+                                <Label Grid.Row="4" Grid.Column="1"  TextColor="Black" Text="{Binding Province}"/>
 
-                                <Label Grid.Row="5" Grid.Column="0" Text="Commmune " />
-                                <Label Grid.Row="5" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding Commune}"/>
+                                <Label Grid.Row="5" Grid.Column="0" Text="Email" />
+                                <Label Grid.Row="5" Grid.Column="1"  TextColor="Black" Text="{Binding Email}"/>
 
                                 <Label Grid.Row="6" Grid.Column="0" Text="Address " />
-                                <Label Grid.Row="6" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding Address}"/>
+                                <Label Grid.Row="6" Grid.Column="1"  TextColor="Black" Text="{Binding Address}"/>
 
-                                <Label Grid.Row="7" Grid.Column="0" Text="Category " />
-                                <Label Grid.Row="7" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding category}"/>
+                                <Label Grid.Row="7" Grid.Column="0" Text="Category Inciden " />
+                                <Label Grid.Row="7" Grid.Column="1"  TextColor="Black" Text="{Binding category}"/>
                                 
                                 <Label Grid.Row="8" Grid.Column="0" Text="Description " />
-                                <Label Grid.Row="8" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding comments}"/>
+                                <Label Grid.Row="8" Grid.Column="1"  TextColor="Black" Text="{Binding comments}"/>
 
                                 <Label Grid.Row="9" Grid.Column="0" Text="Status " />
-                                <Label Grid.Row="9" Grid.Column="1"  TextColor="Goldenrod" Text="{Binding status}"/>
+                                <Label Grid.Row="9" Grid.Column="1"  TextColor="Black" Text="{Binding status}"/>
 
 
                             </Grid>
                         </ScrollView>
                     </StackLayout>
+                    <!--
+            
+
                     <Button
                         Text="Cart"
                         TextColor="Black"
@@ -125,7 +128,7 @@
                     ElementName=DetailsLayout,
                     Property=Height,
                     Factor=1,
-                    Constant=50}" />
+                    Constant=50}" /> -->
                 </RelativeLayout>
             </StackLayout>
         </ScrollView>

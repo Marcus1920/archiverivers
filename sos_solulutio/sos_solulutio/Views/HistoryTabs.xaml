@@ -2,14 +2,17 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="sos_solulutio.Views.HistoryTabs" 
+              xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions" 
+
             xmlns:pages="clr-namespace:sos_solulutio.Views" >
 
 
-   
 
-    <pages:Historique Icon="icons8_opened_folder_48.png" Title="Ouvert"/>
-    <pages:Ferme   Icon="icons8_close_tab_48.png" Title="Ferme"/>
-    <pages:Accepter    Icon="icons8_fingerprint_accepted_48.png" Title="Accepter"/>
-    <pages:Ignore    Icon="icons8_data_pending_48.png" Title="Ignore"/>
+
+    <pages:Historique Icon="ic_folder_shared_white_36dp.png" Title="Attente" plugin:TabBadge.BadgeText="12"/>
+    <pages:Accepter    Icon="ic_cloud_done_white_36dp.png" Title="Accepter" plugin:TabBadge.BadgeText="18"/>
+
+    <pages:Ferme   Icon="ic_folder_open_white_36dp.png" Title="Ferme" plugin:TabBadge.BadgeText="85"/>
+    <pages:Ignore    Icon="ic_cloud_off_white_36dp.png" Title="Faux "  plugin:TabBadge.BadgeText="10" />
 
 </TabbedPage>

@@ -68,7 +68,7 @@ namespace sos_solulutio.Views
             {
               notFound.Text = "";
                 SearchStation.IsVisible = false;
-                UserDialogs.Instance.Toast("Aucun  résulta trouver vérifier votre connections", TimeSpan.FromSeconds(15));
+                UserDialogs.Instance.Toast("Aucun  résulta trouver vérifier votre connections", TimeSpan.FromSeconds(7));
                 
 
             }
