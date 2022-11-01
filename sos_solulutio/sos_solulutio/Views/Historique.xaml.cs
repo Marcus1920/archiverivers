@@ -18,8 +18,11 @@ namespace sos_solulutio.Views
     {
         private ObservableCollection<Reports> _station;
         private readonly ReportsService _service = new ReportsService();
+
+
         public Historique()
         {
+           
             BindingContext = this;
             InitializeComponent();
         }
@@ -50,19 +53,15 @@ namespace sos_solulutio.Views
         }
         public async Task GetPosts()
         {
-            var current = Connectivity.NetworkAccess;
 
-            if (current == NetworkAccess.Internet && current != NetworkAccess.ConstrainedInternet && current != NetworkAccess.None && current != NetworkAccess.Unknown)
-            {
-                try
-            {
 
-                    SearchStation.IsVisible=true;
+            try
+            {
+                SearchStation.IsVisible = true;
                 notFound.IsVisible = true;
                 notFound.Text = "Loading...";
+                var poststList = await _service.GetAllPosts();
 
-               var poststList = await _service.GetAllPosts();
-                  
 
                 _station = new ObservableCollection<Reports>(poststList);
                 listView.ItemsSource = _station;
@@ -72,54 +71,106 @@ namespace sos_solulutio.Views
             }
             catch (Exception)
             {
-               /* await DisplayAlert("Connection Error!",
+                /*await DisplayAlert("Connection Error!",
                     "Please check your network status, refresh the page (pull down) or try again later.",
                     "OK");*/
             }
             finally
             {
+                notFound.Text = "";
+                SearchStation.IsVisible = false;
+                UserDialogs.Instance.Toast("Aucun  résulta trouver vérifier votre connections", TimeSpan.FromSeconds(15));
+
+            }
+
+
+            /*
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet && current != NetworkAccess.ConstrainedInternet && current != NetworkAccess.None && current != NetworkAccess.Unknown)
+            {
+
+
+
+                try
+            {
+
+                   UserDialogs.Instance.ShowLoading("Patiente nous actualisons vos données.Merci pour votre patience …", MaskType.Black);
+
+                    SearchStation.IsVisible=false;
+                notFound.IsVisible = true;
+              // notFound.Text = "Patiente nous actualisons vos données";
+
+               var poststList = await _service.GetAllPosts();
+                  
+
+                _station = new ObservableCollection<Reports>(poststList);
+                listView.ItemsSource = _station;
+
+                listView.IsVisible = _station.Any();
+                notFound.IsVisible = !listView.IsVisible;
+                UserDialogs.Instance.HideLoading();
+
+                }
+                catch (Exception)
+            {
+                await DisplayAlert("Désolé !",
+                    "Veuillez vérifier votre connexion donne  et  réessayer plus tard... ",
+                    "OK");
+                    UserDialogs.Instance.HideLoading();
+                }
+            finally
+            {
                 
                // SearchStation.IsVisible = false;
-                UserDialogs.Instance.Toast("Aucun  résultat trouver vérifier votre connections", TimeSpan.FromSeconds(7));
-
-              var poststLists = new List<Reports>()
+              //  UserDialogs.Instance.Toast("Aucun  résultat trouver vérifier votre connections", TimeSpan.FromSeconds(7));
+                    UserDialogs.Instance.HideLoading();
+                    var poststLists = new List<Reports>()
             {
                 new Reports { Name ="Goro", Surname = "Mbayo", CellPhonumber="+243992203123",Email="marcus@gmail.com"
-                ,Address="14 wangata comune de manika",category="Fraude",comments="No comment" ,Commune="manika", Province="Lualaba"
-                ,status="Attente",HopitalLogo="logo.png",ID=1,Lat=1111245,Lng=11111},
+                ,Address="14 wangata comune de manika",category="Fraude",comments="Maison cambriole perte de téléphone Samsung et un post téléviseur plus une sommées 2000Fc " ,Commune="manika", Province="Lualaba"
+                ,status="Attente",ville="Kolwezi", HopitalLogo="logo.png",ID=1,Lat=1111245,Lng=11111},
 
             };
-
-
+                  
                     _station = new ObservableCollection<Reports>(poststLists);
                     listView.ItemsSource = _station;
 
                     listView.IsVisible = _station.Any();
                     notFound.IsVisible = !listView.IsVisible;
-                
 
-            }
+                    UserDialogs.Instance.HideLoading();
+
+                }
 
             }
             else
+
+                //SearchStation.IsVisible = false;
+                // UserDialogs.Instance.Toast("Aucun  résultat trouver vérifier votre connections", TimeSpan.FromSeconds(7));
+                Plugin.Badge.Abstractions.TabBadge.SetBadgeText(this, "1");
+                Plugin.Badge.Abstractions.TabBadge.SetBadgeColor(this, Color.DarkOliveGreen);
             
-            //SearchStation.IsVisible = false;
-            UserDialogs.Instance.Toast("Aucun  résultat trouver vérifier votre connections", TimeSpan.FromSeconds(7));
+            UserDialogs.Instance.HideLoading();
+
             var poststListss = new List<Reports>()
             {
                 new Reports { Name ="Goro", Surname = "Mbayo", CellPhonumber="+243992203123",Email="marcus@gmail.com"
-                ,Address="14 wangata comune de manika",category="default",comments="No comment" ,Commune="manika", Province="Lualaba"
-                ,status="Attente",HopitalLogo="logo.png",ID=1,Lat=1111245,Lng=11111},
+                ,Address="14 wangata comune de manika",category="Vols",comments="Maison cambriole perte de téléphone Samsung et un post téléviseur plus une sommées 2000Fc " ,Commune="manika", Province="Lualaba"
+                ,status="Attente",ville="Kolwezi", HopitalLogo="logo.png",ID=1,Lat=1111245,Lng=11111},
 
             };
 
+       
 
             _station = new ObservableCollection<Reports>(poststListss);
+            
             listView.ItemsSource = _station;
 
             listView.IsVisible = _station.Any();
             notFound.IsVisible = !listView.IsVisible;
-
+            UserDialogs.Instance.HideLoading();
+            */
         }
 
         private async void ItemsListView_Refreshing(object sender, EventArgs e)

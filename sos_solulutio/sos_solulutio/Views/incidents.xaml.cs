@@ -59,18 +59,34 @@ namespace sos_solulutio.Views
             {
                 try
                 {
-                    //loaders.IsVisible = true;
-                    //labels.IsVisible = true;
-                   
-                       
+                    UserDialogs.Instance.ShowLoading("Veillez patiente votre  requête et entrain d’être traite   Merci pour votre patience …", MaskType.Black);
+
+                    if (
+                    String.IsNullOrWhiteSpace(descrition.Text) ||
+                    String.IsNullOrWhiteSpace(Province.SelectedItem.ToString()) ||
+                     String.IsNullOrWhiteSpace(Categories.SelectedItem.ToString()) ||
+                      String.IsNullOrWhiteSpace(Adresse.Text) 
+
+                    )
+
+
+
+                    {
+
+                        //   UserDialogs.Instance.ShowError("Complete les tous field", 2000);
+                        await DisplayAlert("désolé", "Veuillez remplir tous les champs de texte requis ", "Ok");
+                        UserDialogs.Instance.HideLoading();
+                    }
+
                     var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(3));
                     cts = new CancellationTokenSource();
                     var location = await Geolocation.GetLocationAsync(request, cts.Token);
 
+
                     if (location != null)
                     {
 
-                            UserDialogs.Instance.ShowLoading("Veillez patiente votre  requête et entrain d’être traite   Merci pour votre patience …", MaskType.Black);
+                         
 
                             var user_id = Preferences.Get("user_id", "");
 
@@ -87,9 +103,10 @@ namespace sos_solulutio.Views
                             new KeyValuePair<string, string>("long",  location.Longitude.ToString("N6").Replace(",", ".")),
                             new KeyValuePair<string, string>("lat",   location.Latitude.ToString("N6").Replace(",", ".")),
                             new KeyValuePair<string, string>("Commune",ville.SelectedItem.ToString()),
-                            new KeyValuePair<string, string>("type",infractions.SelectedItem.ToString()),
+                            new KeyValuePair<string, string>("type",Categories.SelectedItem.ToString()),
+                            new KeyValuePair<string, string>("subcategory",Subcategories.SelectedItem.ToString()),
                             new KeyValuePair<string, string>("Address", Adresse.Text)
-
+                            
                             };
 
 
@@ -118,7 +135,7 @@ namespace sos_solulutio.Views
                               descrition.Text = "";
                           //  _ = communes.SelectedIndex - 1;
                             _ = Province.SelectedIndex - 1;
-                            _ = infractions.SelectedIndex - 1;
+                            _ = Categories.SelectedIndex - 1;
                             _ = ville.SelectedIndex - 1;
                             Image.Source="image_not_found.jpg";
 
@@ -588,6 +605,104 @@ namespace sos_solulutio.Views
 
 
 
+        }
+
+        private async void infractions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string subject = Categories.SelectedItem.ToString();
+            try
+            {
+                // Use default vibration length
+                switch (subject)
+                {
+
+                    case "Délits de vol":
+
+                        Subcategories.Items.Clear();
+                        //  communes.Items.Clear();
+                        Subcategories.Items.Add("cambriolage");
+                        Subcategories.Items.Add("vol à main armée");
+                        Subcategories.Items.Add("vol avec violence");
+                        Subcategories.Items.Add("vol à l'étalage");
+                        Subcategories.Items.Add("assurance commerciale contre le vol");
+                        break;
+
+                    case "Crimes liés à la drogue":
+
+                        Subcategories.Items.Clear();
+                        //  communes.Items.Clear();
+                        Subcategories.Items.Add("possession de drogue");
+                        Subcategories.Items.Add("fabrication de drogue");
+                        Subcategories.Items.Add("Trafic de drogue");
+
+                        break;
+
+
+                    case "Infractions routières":
+
+                        Subcategories.Items.Clear();
+                        //  communes.Items.Clear();
+                        Subcategories.Items.Add("permis révoqué");
+                        Subcategories.Items.Add("conduire sans permis");
+                        Subcategories.Items.Add("accident ");
+                        Subcategories.Items.Add("accidents avec délit de fuite");
+                        Subcategories.Items.Add("conduite dangereuse");
+                        Subcategories.Items.Add("agression véhiculaire");
+                        break;
+
+                    case "Fraude":
+
+                        Subcategories.Items.Clear();
+                        //  communes.Items.Clear();
+                        Subcategories.Items.Add("chantage ");
+                        Subcategories.Items.Add("blanchiment d'argent");
+                        Subcategories.Items.Add("détournement de fonds");
+                        Subcategories.Items.Add("évasion fiscale");
+                        Subcategories.Items.Add("cybercriminalité");
+                        break;
+
+
+                    case "Agression sexuelle":
+
+                        Subcategories.Items.Clear();
+                        //  communes.Items.Clear();
+                        Subcategories.Items.Add("menaces ");
+                        Subcategories.Items.Add("embrasser");
+                        Subcategories.Items.Add("pénétration");
+                        Subcategories.Items.Add("viol avec forcé");
+
+                        break;
+
+
+                    
+
+
+                    case "Mort d'homme":
+
+                        Subcategories.Items.Clear();
+                        //  communes.Items.Clear();
+                        Subcategories.Items.Add("meurtre au premier degré");
+                        Subcategories.Items.Add("meurtre au deuxième degré");
+                        Subcategories.Items.Add("homicide involontaire");
+                        Subcategories.Items.Add("homicide volontaire");
+
+                        break;
+
+                  
+
+
+                    default:
+                        Console.WriteLine("Subject is C#");
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Feature not supported on device
+                await DisplayAlert("Alert", "Exeption " + ex, "Continue");
+            }
         }
     }
 

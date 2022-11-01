@@ -15,7 +15,7 @@ namespace sos_solulutio.Views
         public HistoryTabs()
         {
             InitializeComponent();
-          
+           
         }
     }
 }

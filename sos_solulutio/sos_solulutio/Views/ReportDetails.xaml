@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sos_solulutio.Views.ReportDetails" Title="Details du Reportage" BackgroundColor="White">
+             x:Class="sos_solulutio.Views.ReportDetails" Title="Résume du Reportage" BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <RelativeLayout BackgroundColor="LightGray"
-                >
+                <RelativeLayout BackgroundColor="WhiteSmoke">
                     <Image 
                         x:Name="BannerImage"
-                        Aspect="AspectFill" 
-                        Source="logood.png"
+                        Aspect="AspectFit" 
+                        Source="ic_my_library_books_white_48dp.png"
                         RelativeLayout.WidthConstraint="{ConstraintExpression
                     Type=RelativeToParent,
                     Property=Width,
@@ -45,7 +44,7 @@
 
                             <Label 
                                 Margin="25, 20, 0, 0"
-                                Text="Plus de  Details"
+                                Text="Résume  du Reportage"
                                 TextColor="White"
                                 FontSize="30"/>
                         </StackLayout>
@@ -75,17 +74,18 @@
 
                                 <Label Grid.Row="0" Grid.Column="0" Text="Nom " />
                                 <Label Grid.Row="0" Grid.Column="1" TextColor="Black" Text="{Binding Name}"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="Post-Nom" />
+                                <Label Grid.Row="1" Grid.Column="1"  TextColor="Black" Text="{Binding Surname}"/>
+                               
+                                <Label Grid.Row="2" Grid.Column="0" Text="Numero de Tellephon" />
+                                <Label Grid.Row="2" Grid.Column="1" TextColor="Black" Text="{Binding CellPhonumber}"/>
 
-                                <Label Grid.Row="1" Grid.Column="0" Text="" />
-                                <Label Grid.Row="1" Grid.Column="1"  TextColor="Goldenrod" Text=""/>
-                                <Label Grid.Row="2" Grid.Column="0" Text="Post-Nom" />
-                                <Label Margin="0, 0, 0, 5" Grid.Row="2" Grid.Column="1" TextColor="Black" Text="{Binding Surname}"/>
+                                <Label Grid.Row="3" Grid.Column="0" Text="Province " />
+                                <Label Grid.Row="3" Grid.Column="1"  TextColor="Black" Text="{Binding Province}"/>
 
-                                <Label Grid.Row="3" Grid.Column="0" Text="Numero de Tellephon" />
-                                <Label x:Name="Callme" Margin="0, 0, 0, 5" Grid.Row="3" Grid.Column="1" TextColor="Black" Text="{Binding CellPhonumber}"/>
+                                <Label Grid.Row="4" Grid.Column="0" Text="Ville " />
+                                <Label Grid.Row="4" Grid.Column="1"  TextColor="Black" Text="{Binding ville}"/>
 
-                                <Label Grid.Row="4" Grid.Column="0" Text="Province " />
-                                <Label Grid.Row="4" Grid.Column="1"  TextColor="Black" Text="{Binding Province}"/>
 
                                 <Label Grid.Row="5" Grid.Column="0" Text="Email" />
                                 <Label Grid.Row="5" Grid.Column="1"  TextColor="Black" Text="{Binding Email}"/>
@@ -93,10 +93,10 @@
                                 <Label Grid.Row="6" Grid.Column="0" Text="Address " />
                                 <Label Grid.Row="6" Grid.Column="1"  TextColor="Black" Text="{Binding Address}"/>
 
-                                <Label Grid.Row="7" Grid.Column="0" Text="Category Inciden " />
+                                <Label Grid.Row="7" Grid.Column="0" Text="Type d' Incident " />
                                 <Label Grid.Row="7" Grid.Column="1"  TextColor="Black" Text="{Binding category}"/>
                                 
-                                <Label Grid.Row="8" Grid.Column="0" Text="Description " />
+                                <Label Grid.Row="8" Grid.Column="0" Text="Description" />
                                 <Label Grid.Row="8" Grid.Column="1"  TextColor="Black" Text="{Binding comments}"/>
 
                                 <Label Grid.Row="9" Grid.Column="0" Text="Status " />
@@ -107,8 +107,6 @@
                         </ScrollView>
                     </StackLayout>
                     <!--
-            
-
                     <Button
                         Text="Cart"
                         TextColor="Black"

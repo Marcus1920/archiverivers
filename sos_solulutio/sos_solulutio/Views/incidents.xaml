@@ -15,8 +15,8 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Clicked="Onpickig" Icon="ic_party_mode_white_36dp.png"/>
-        <ToolbarItem Text="+" Clicked="OnItemAdded"  Icon="ic_camera_enhance_white_36dp.png"/>
+        <ToolbarItem Text="+" Clicked="Onpickig" Icon="ic_insert_photo_white_36dp.png"/>
+        <ToolbarItem Text="+" Clicked="OnItemAdded"  Icon="ic_local_see_white_36dp.png"/>
         <ToolbarItem Text="+"  Clicked="OnMapsearch"  x:Name="MapSearchButton" Icon="ic_map_white_36dp.png"/>
     </ContentPage.ToolbarItems>
 	
@@ -27,29 +27,35 @@
             <ActivityIndicator IsRunning="True" IsVisible="False" x:Name="loaders" />
             <Label IsVisible="False" x:Name="labels" Text="Contacting server. Please wait..." HorizontalOptions="Center" />
 
-            <Grid x:Name="Reqgrid">
+            <Grid x:Name="categories">
 
-                <Picker Title="Categories des Incidents"   TextColor="#212121"  SelectedItem="{Binding Infraction}" x:Name="infractions">
+                <Picker Title="Categories des Incidents" SelectedIndexChanged="infractions_SelectedIndexChanged"   TextColor="#212121"  SelectedItem="{Binding Infraction}" x:Name="Categories">
                     <Picker.Items>
-                        <x:String>Fraudes</x:String>
-                        <x:String>Usurpation</x:String>
-                        <x:String>Viols</x:String>
-                        <x:String>Incendie</x:String>
-                        <x:String>Accouchement</x:String>
-                        <x:String>Mort d'Homme</x:String>
-                        <x:String>Vols</x:String>
-                        <x:String>Extorsion</x:String>
-                        <x:String>Destrucction</x:String>
-                        <x:String>Contrefacon</x:String>
-                        <x:String>Rebellion</x:String>
-                        <x:String>Outrages</x:String>
-                        <x:String>Menaces</x:String>
-                        <x:String>Evasion</x:String>
-                        <x:String>Avortement</x:String>
+                        <x:String>Délits de vol</x:String>
+                        <x:String>Crimes liés à la drogue</x:String>
+                        <x:String>Infractions routières</x:String>
+                        <x:String>Fraude</x:String>
+                        <x:String>Agression sexuelle</x:String>
+                    
+                        <x:String>Mort d'homme</x:String>
+                   
+                       
                     </Picker.Items>
                 </Picker>
 
             </Grid>
+
+
+            <Grid x:Name="subcategories">
+
+                <Picker Title="Souscategories des Incidents"   TextColor="#212121"  x:Name="Subcategories">
+                   
+                </Picker>
+
+            </Grid>
+
+
+
 
 
             <Grid>

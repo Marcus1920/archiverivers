@@ -5,12 +5,12 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <RelativeLayout BackgroundColor="LightGray"
+                <RelativeLayout BackgroundColor="WhiteSmoke"
                 >
                     <Image 
                         x:Name="BannerImage"
                         Aspect="AspectFill" 
-                        BackgroundColor="WhiteSmoke"
+                        Source="ic_person_white_48dp.png"
                         RelativeLayout.WidthConstraint="{ConstraintExpression
                     Type=RelativeToParent,
                     Property=Width,
@@ -19,15 +19,7 @@
                     Type=RelativeToParent,
                     Property=Height,
                     Factor=0.5}"/>
-                    <Image 
-                        HorizontalOptions="Center"
-                        WidthRequest="200"
-                        x:Name="UserProfiles"
-                        HeightRequest="200"
-                        Aspect="AspectFill"
-                        BackgroundColor="WhiteSmoke"
-        
-                       />
+                  
 
                     <StackLayout x:Name="DetailsLayout"
                                  BackgroundColor="White"
@@ -35,7 +27,7 @@
                                  RelativeLayout.HeightConstraint="{ConstraintExpression
                                 Type=RelativeToParent,
                                 Property=Height,
-                                Factor=0.8,
+                                Factor=0.5,
                                 Constant=15}"
                                  RelativeLayout.WidthConstraint="{ConstraintExpression
                                 Type=RelativeToParent,
@@ -45,8 +37,8 @@
                                 Type=RelativeToView,
                                 ElementName=BannerImage,
                                 Property=Height,
-                                Factor=0.5,
-                                Constant=-20}">
+                                Factor=1,
+                                Constant=-15}">
 
                         <StackLayout
                             Orientation="Horizontal"

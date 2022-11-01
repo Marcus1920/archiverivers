@@ -28,9 +28,9 @@ namespace sos_solulutio.Views
         {
             infoMame.Text="Version"+ AppInfo.Version.ToString();
             UserName.Text ="";
-            UserName.Text = Preferences.Get("organization", "")+" Pty Ltd";
+            UserName.Text = "REPORTER"; //Preferences.Get("organization", "")+" Pty Ltd";
             //ProfilePic.Source = Preferences.Get("logo", "");
-            ProfilePic.Source = "logood.png";
+            ProfilePic.Source = "mobilogo.png";
             base.OnAppearing();
         }
         class MaipageMasterViewModel : INotifyPropertyChanged
@@ -47,7 +47,7 @@ namespace sos_solulutio.Views
                     new MaipageMasterMenuItem { Id = 4, Title = "Profile", IconSource="ic_nature_people_black_36dp.png", TargetType = typeof(UserProfile) },
 
                    new MaipageMasterMenuItem { Id = 2, Title = "Reporter un Incident" , IconSource="ic_create_new_folder_black_36dp.png", TargetType = typeof(incidents) },
-                    new MaipageMasterMenuItem { Id = 3, Title = "Historique des Reportages" , IconSource="ic_library_books_black_48dp.png", TargetType = typeof(HistoryTabs) },
+                    new MaipageMasterMenuItem { Id = 3, Title = "Revues des Reportages" , IconSource="ic_library_books_black_48dp.png", TargetType = typeof(HistoryTabs) },
 
                    // new MaipageMasterMenuItem { Id = 3, Title = "Attendancy" , IconSource="ic_person_black_36dp.png", TargetType = typeof(Attendancy) },
               //      new MaipageMasterMenuItem { Id = 3, Title = "Rotation des Shift" , IconSource="ic_history_black_36dp.png", TargetType = typeof(RoasterTabs) },

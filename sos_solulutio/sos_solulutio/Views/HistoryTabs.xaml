@@ -9,10 +9,10 @@
 
 
 
-    <pages:Historique Icon="ic_folder_shared_white_36dp.png" Title="Attente" plugin:TabBadge.BadgeText="12"/>
-    <pages:Accepter    Icon="ic_cloud_done_white_36dp.png" Title="Accepter" plugin:TabBadge.BadgeText="18"/>
+    <pages:Historique Icon="ic_folder_shared_white_36dp.png" Title="Attente" x:Name="bageone" />
+    <pages:Accepter    Icon="ic_cloud_done_white_36dp.png" Title="Accepter" />
 
-    <pages:Ferme   Icon="ic_folder_open_white_36dp.png" Title="Ferme" plugin:TabBadge.BadgeText="85"/>
-    <pages:Ignore    Icon="ic_cloud_off_white_36dp.png" Title="Faux "  plugin:TabBadge.BadgeText="10" />
+    <pages:Ferme   Icon="ic_folder_open_white_36dp.png" Title="Ferme" />
+    <!-- <pages:Ignore    Icon="ic_cloud_off_white_36dp.png" Title="Faux "  plugin:TabBadge.BadgeText="10" />-->
 
 </TabbedPage>

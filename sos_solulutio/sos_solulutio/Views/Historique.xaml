@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sos_solulutio.Views.Historique"  BackgroundColor="White" Title="Status ouvert">
+             x:Class="sos_solulutio.Views.Historique"  xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions" 
+  BackgroundColor="White" >
     <StackLayout>
         <SearchBar x:Name="SearchStation"  Placeholder="Chercher..." IsVisible="false"
                 TextChanged="CountriesSearchBar_TextChangedAsync"
@@ -11,11 +12,13 @@
        
         <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected"
                 VerticalOptions="FillAndExpand"
-                HasUnevenRows="true"
+                HasUnevenRows="True"
                 SeparatorVisibility="None"
+                  SeparatorColor="Transparent"
                   BackgroundColor="White"
                 IsPullToRefreshEnabled="False"
                 CachingStrategy="RecycleElement"
+                  
                >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -33,7 +36,7 @@
                             <StackLayout Grid.Row="0" Grid.Column="1">
                                 <StackLayout  VerticalOptions="StartAndExpand">
                                     <Label FontSize="12" FontAttributes="Bold" Text="{Binding Name, StringFormat='Nom du reporteur :{0:F2}' }" />
-                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding CellPhonumber,StringFormat='Telephone Number :{0:F2}'}" />
+                                    <Label FontSize="12" FontAttributes="Bold" Text="{Binding Province,StringFormat='Province :{0:F2}'}" />
                                     <Label FontSize="12" FontAttributes="Bold" Text="{Binding category,StringFormat='Type Incident Reporter :{0:F2}'}" />
                                    
                                 </StackLayout>

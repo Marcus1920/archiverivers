@@ -80,7 +80,7 @@ namespace sos_solulutio.Views
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Notification", "Pour utliser la cart Pour la premiere fois  connecter vous a l'internet Merci...", "OK");
+                await DisplayAlert("Notification", "Pour utliser la cart   connecter vous a l'internet    Merci...", "OK");
 
                // lblInfo.Text =    "";          // ex.Message.ToString();
                 ContentMap.IsVisible = false;
