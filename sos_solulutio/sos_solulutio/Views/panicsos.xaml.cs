@@ -20,7 +20,7 @@ namespace sos_solulutio.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class panicsos : ContentPage
     {
-        private readonly string BaseUrl = "https://stormy-wildwood-40195.herokuapp.com/api/incidents/create-incident-sos";
+        private readonly string BaseUrl = "http://shrouded-tundra-85417.herokuapp.com/api/incidents/create-incident-sos";
         
         private readonly string lat = null;
         private readonly string longt = null;

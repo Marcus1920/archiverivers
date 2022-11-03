@@ -106,7 +106,7 @@ namespace sos_solulutio.Views
             }
             UserDialogs.Instance.ShowLoading("Loading....", MaskType.Gradient);
 
-            _url = "http://system.foodforus.cloud/api/v1/updateProfile";
+            _url = "http://shrouded-tundra-85417.herokuapp.com//api/v1/updateProfile";
             var user_id = Preferences.Get("user_id", "");
             var content = new MultipartFormDataContent();
 

@@ -11,7 +11,7 @@ namespace sos_solulutio.Services
 {
     public class ReportsService
     {
-        public string BaseUrl = "http://stormy-wildwood-40195.herokuapp.com/api/incidents/";
+        public string BaseUrl = "http://shrouded-tundra-85417.herokuapp.com/api/incidents/";
         private string _url;
         private readonly HttpClient _client = new HttpClient();
         private HttpResponseMessage _response = new HttpResponseMessage();
